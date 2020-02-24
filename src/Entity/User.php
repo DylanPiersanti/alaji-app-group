@@ -88,6 +88,12 @@ class User implements UserInterface
         return (string) $this->email;
     }
 
+    public function getRole() 
+    {
+        $roles = $this->getRoles();
+        return array_shift($roles);
+    }
+
     /**
      * @see UserInterface
      */
