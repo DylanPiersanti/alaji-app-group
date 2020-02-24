@@ -22,6 +22,11 @@ class Result
     private $candidate;
 
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Criteria", inversedBy="results")
+     */
+    private $criteria;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $oral;
@@ -32,17 +37,12 @@ class Result
     private $test;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Criteria", inversedBy="results")
-     */
-    private $criteria;
-
-    /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $coeforal;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $coeftest;
 
@@ -73,6 +73,18 @@ class Result
         return $this;
     }
 
+    public function getCriteria(): ?Criteria
+    {
+        return $this->criteria;
+    }
+
+    public function setCriteria(?Criteria $criteria): self
+    {
+        $this->criteria = $criteria;
+
+        return $this;
+    }
+
     public function getOral(): ?int
     {
         return $this->oral;
@@ -97,18 +109,6 @@ class Result
         return $this;
     }
 
-    public function getCriteria(): ?Criteria
-    {
-        return $this->criteria;
-    }
-
-    public function setCriteria(?Criteria $criteria): self
-    {
-        $this->criteria = $criteria;
-
-        return $this;
-    }
-
     public function getCoeforal(): ?float
     {
         return $this->coeforal;
@@ -126,7 +126,7 @@ class Result
         return $this->coeftest;
     }
 
-    public function setCoeftest(float $coeftest): self
+    public function setCoeftest(?float $coeftest): self
     {
         $this->coeftest = $coeftest;
 

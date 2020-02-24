@@ -48,6 +48,8 @@ class Candidate
      */
     private $results;
 
+
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -148,4 +150,6 @@ class Candidate
 
         return $this;
     }
+
+
 }

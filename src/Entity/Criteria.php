@@ -33,6 +33,8 @@ class Criteria
      */
     private $results;
 
+
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -97,4 +99,6 @@ class Criteria
 
         return $this;
     }
+
+
 }
