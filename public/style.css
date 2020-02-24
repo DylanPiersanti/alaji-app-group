@@ -10,7 +10,7 @@ footer {
 }
 
 .cardconnection,
-.boutonconnection {
+.butonconnection {
     display: flex;
     justify-content: center;
 }
