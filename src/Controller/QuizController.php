@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+class QuizController extends AbstractController
 {
     /**
      * @Route("/quiz", name="quiz")
@@ -24,12 +24,10 @@ class HomeController extends AbstractController
             $moodleApiController->postResult($moodleApi);
             $moodleApiController->postcoef($moodleApi);
         }
-        $quiz = $this->getDoctrine()
-            ->getRepository(Quiz::class)
-            ->findAll();
+        $user = $this->getUser();
 
         return $this->render('home/quiz.html.twig', [
-            'quiz' => $quiz,
+            'teacher' => $user,
         ]);
     }
 
@@ -40,13 +38,11 @@ class HomeController extends AbstractController
      public function candidat()
      {
 
-         $candidat = $this->getDoctrine()
-             ->getRepository(Candidate::class)
-             ->findAll();
+        $user = $this->getUser();
 
-         return $this->render('home/candidates.html.twig', [
-             'candidat' => $candidat,
-         ]);
+        return $this->render('home/candidates.html.twig', [
+            'teacher' => $user,
+        ]);
      }
 
 
