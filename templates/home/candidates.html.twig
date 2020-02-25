@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidats{% endblock %}
+
+{% block body %}
+    <h2><p class="text-muted">Selectionner un candidat</p></h2>
+    {% for candidates in candidat %}
+        <a href=""><li>{{ candidates.fullname }}</li></a>
+    {% endfor %}
+{% endblock %}

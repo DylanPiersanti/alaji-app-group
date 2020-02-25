@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Api\MoodleApi;
 use App\Entity\Quiz;
+use App\Entity\Candidate;
 use App\Controller\MoodleApiController;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,9 +33,21 @@ class HomeController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/quiz/candidates", name="candidates")
+     */
 
+     public function candidat()
+     {
 
+         $candidat = $this->getDoctrine()
+             ->getRepository(Candidate::class)
+             ->findAll();
 
+         return $this->render('home/candidates.html.twig', [
+             'candidat' => $candidat,
+         ]);
+     }
 
 
 }
