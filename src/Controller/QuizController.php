@@ -31,19 +31,4 @@ class QuizController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/quiz/candidates", name="candidates")
-     */
-
-     public function candidat()
-     {
-
-        $user = $this->getUser();
-
-        return $this->render('home/candidates.html.twig', [
-            'teacher' => $user,
-        ]);
-     }
-
-
 }

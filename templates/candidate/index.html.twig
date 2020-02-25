@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CandidateController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="container">
+    <div class="jumbotron mt-5">
+        <div class="row">
+            <div class="col-4">
+                <img src="{{ candidate.avatar }}" width="80%"/>
+            </div>
+            <div class="col-8">
+                <h1 class="display-4"><span class="badge badge-secondary">ID : {{ candidate.moodleid }}</span>  {{ candidate.fullname }}</h1>
+                <p class="lead mt-5">Email : {{ candidate.email }}</p>
+                <hr class="my-4 mt-5">
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Critère</th>
+                    <th scope="col">Déscription</th>
+                    <th scope="col">Note elearning</th>
+                    <th scope="col">Note oral</th>
+                    <th scope="col">Moyenne générale</th>
+                    <th scope="col">Debrief</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>{{ result.criteria.id }}</td>
+                        <td>{{ result.criteria.name }}</td>
+                        <td>{{ result.test }}</td>
+                        <td>{{ result.oral }}</td>
+                        <td>{{ result.average}}</td>
+                        <td>{{ result.acquis }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
