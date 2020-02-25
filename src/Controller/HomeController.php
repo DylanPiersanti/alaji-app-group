@@ -12,9 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/quiz", name="quiz")
      */
-    public function index(Request $request, MoodleApiController $moodleApiController, MoodleApi $moodleApi)
+    public function quiz(Request $request)
     {
         if ($request->isMethod('POST')) {
             $moodleApiController->postQuiz($moodleApi);
@@ -23,17 +23,6 @@ class HomeController extends AbstractController
             $moodleApiController->postResult($moodleApi);
             $moodleApiController->postcoef($moodleApi);
         }
-
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-        ]);
-    }
-
-    /**
-     * @Route("/quiz", name="quiz")
-     */
-    public function quiz()
-    {
         $quiz = $this->getDoctrine()
             ->getRepository(Quiz::class)
             ->findAll();
