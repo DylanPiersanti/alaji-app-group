@@ -1,4 +1,5 @@
-<?php namespace App\Tests;
+<?php
+namespace App\Tests;
 use App\Tests\AcceptanceTester;
 
 class AddTeacherCest
