@@ -19,8 +19,8 @@
     <ul class="mt-5" >
         {% for teacher in teachers %}
             {% if teacher.roles[0] != "ROLE_ADMIN" %}
-                <li><a href="{{ path('') }}">
-                    {{ teacher.fullname }} | {{ teacher.email }} | 
+                <li><a href="">
+                    {{ teacher.fullname }} | {{ teacher.email }} |
                         {% if teacher.roles[0] == "ROLE_USER" %}
                             Examinateur
                         {% endif %}
