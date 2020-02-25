@@ -9,6 +9,9 @@
             "branch": "master",
             "version": "2.3",
             "ref": "d2a29c0abee586aff913fd45fae1f59b669f4cbe"
+<<<<<<< HEAD
+        }
+=======
         },
         "files": [
             "codeception.yml",
@@ -28,6 +31,7 @@
             "tests/functional.suite.yml",
             "tests/unit.suite.yml"
         ]
+>>>>>>> origin/master
     },
     "codeception/lib-asserts": {
         "version": "1.11.0"
