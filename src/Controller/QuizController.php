@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizController extends AbstractController
 {
     /**
-     * @Route("/quiz", name="quiz")
+     * @Route("/", name="quiz")
      */
     public function quiz(Request $request)
     {

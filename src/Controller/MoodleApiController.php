@@ -426,4 +426,40 @@ class MoodleApiController extends AbstractController
 
     }
 
+    /**
+     * @Route("/teacher", name="teacher")
+     */
+    public function postTeacher(MoodleApi $moodleApi, string $email)
+    {
+        $user = $moodleApi->getTeacher($email);
+        if (!$user["users"]) {
+            return[
+                'success' => false,
+                'message' => "L'email n'exite pas dans moodle."
+            ];
+        }
+        $idUser = $user["users"][0]["id"];
+        $courses = $moodleApi->getCourses($idUser);
+        $idCourses = $courses['groups'][0]['courseid'];
+        $users = $moodleApi->getUsers($idCourses);
+        foreach ($users as $user) {
+            $role = $user["roles"][0]["roleid"];
+            if ($user["id"] === $idUser && $role === 3) {
+                return [
+                    'success' => true,
+                    'message' => 'Éxaminateur ajouter',
+                    'fullname' => $user["fullname"],
+                    'idMoodle' => $user["id"]
+                ];
+            }
+
+        }
+
+        return[
+            'success' => false,
+            'message' => "L'email ne correspond pas à un examinateur."
+        ];
+    }
+
+
 }

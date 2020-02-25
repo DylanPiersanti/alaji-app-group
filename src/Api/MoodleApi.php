@@ -11,10 +11,11 @@ use \DomXPath;
 class MoodleApi extends AbstractApi
 {
 
-    public function getTeacher()
+    public function getTeacher(string $email)
     {
-        return $this->call('core_enrol_get_enrolled_users', [
-            'courseid' => 41
+        return $this->call('core_user_get_users', [
+            'criteria[0][key]' => 'email',
+            'criteria[0][value]' => $email
         ]);
     }
 
@@ -65,7 +66,7 @@ class MoodleApi extends AbstractApi
         return $nodes->item(0)->nodeValue;
 
     }
-    
+
     public function averageResult(int $elearning, float $coefelearning, int $oral, float $coeforal)
     {
         $array = [[$elearning, $coefelearning], [$oral, $coeforal]];
@@ -88,5 +89,5 @@ class MoodleApi extends AbstractApi
         }
         return $response;
     }
-    
+
 }
