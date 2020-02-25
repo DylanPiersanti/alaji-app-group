@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TeacherController!{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <div class="jumbotron mt-5">
+        <h1 class="display-4"><span class="badge badge-secondary">ID : {{ teachers[0].moodleid }}</span>  {{ teachers[0].fullname }}</h1>
+        <p class="lead">Email : {{ teachers[0].email }}</p>
+        <hr class="my-4">
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ path('quiz') }}" role="button">Mes quizz</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
