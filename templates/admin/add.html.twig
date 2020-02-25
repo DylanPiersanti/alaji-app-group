@@ -5,11 +5,16 @@
 {% block body %}
 <style>
 #form {
-    
+
 }
 </style>
 
 <div class="example-wrapper mt-5">
    {{ form(form) }}
 </div>
+{% if message %}
+    <div class="error">
+        {{message}}
+    </div>
+{% endif %}
 {% endblock %}
