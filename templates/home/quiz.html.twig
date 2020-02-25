@@ -3,14 +3,27 @@
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
-    <form class="form" action="" method="post">
-        <input type="submit" name="update" value="Mettre à jour les données" class="btn btn-info">
-    </form>
-    <div class="jumbotron mt-3">
-        <p class="lead"><h1>Sélection du quiz</h1></p>
-        <hr class="my-4">
-        {% for quiz in teacher.quizzes %}
-            <a href="{{path('candidates')}}"><li>{{ quiz.name }}</li></a>
-        {% endfor %}
+<style>
+.profil-link {
+    color: #fff;
+}
+.profil-link:hover {
+    color: #eee;
+}
+
+</style>
+    <div class="container mt-5">
+        <form class="form" action="" method="post" >
+            <input type="submit" name="update" value="Mettre à jour les données" class="btn btn-info">
+            <button class="btn btn-primary"><a class="profil-link" href="{{ path('teacher_profil') }}">Mon profil</a></button>
+        </form>
+        
+        <div class="jumbotron mt-3">
+            <p class="lead"><h1>Sélection du quiz</h1></p>
+            <hr class="my-4">
+            {% for quiz in teacher.quizzes %}
+                <a href="{{path('candidates')}}"><li>{{ quiz.name }}</li></a>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
