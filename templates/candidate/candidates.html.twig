@@ -10,7 +10,7 @@
                 <div class="card text-center">
                     <img class="card-img-top" src="{{ candidate.avatar }}" alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title"><a href="">{{ candidate.fullname }}</a></h5>
+                        <h5 class="card-title"><a href="{{ path('candidate_profil', { id : candidate.id }) }}">{{ candidate.fullname }}</a></h5>
                         <p class="card-text">Moodle Id : {{ candidate.moodleId }}</p>
                     </div>
                     <div class="card-footer">
