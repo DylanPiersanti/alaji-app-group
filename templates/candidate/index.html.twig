@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CandidateController!{% endblock %}
+{% block title %}Profil du candidat{% endblock %}
 
 {% block body %}
 <style>
@@ -10,17 +10,26 @@
 
 <div class="container">
     <div class="jumbotron mt-5">
+        <a href="{{path('student_form', {id : candidate.id})}}">
+            <button class="btn btn-primary mb-2">
+                {% if results[0].oral is empty %}
+                    Ajouter les notes orale
+                {% else %}
+                    Editer les notes orale
+                {% endif %}
+            </button>
+        </a>
         <div class="row">
             <div class="col-4">
                 <img src="{{ candidate.avatar }}" width="80%"/>
             </div>
             <div class="col-8">
                 <h1 class="display-4"><span class="badge badge-secondary">ID : {{ candidate.moodleid }}</span>  {{ candidate.fullname }}</h1>
-                <p class="lead mt-5">Email : {{ candidate.email }}</p>
+                <p class="lead mt-5">Email : <a href="mailto:{{ candidate.email }}">{{ candidate.email }}</a></p>
                 <hr class="my-4 mt-5">
             </div>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover text-center">
             <thead>
                 <tr>
                     <th scope="col">Critère</th>
@@ -38,7 +47,7 @@
                         <td>{{ result.criteria.name }}</td>
                         <td>{{ result.test }}</td>
                         <td>{{ result.oral }}</td>
-                        <td>{{ result.average}}</td>
+                        <td>{{ result.average }} %</td>
                         <td>{{ result.acquis }}</td>
                     </tr>
                 {% endfor %}
