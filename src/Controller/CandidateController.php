@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use App\Entity\Candidate;
 use App\Entity\Result;
 use App\Api\MoodleApi;
@@ -114,4 +116,53 @@ class CandidateController extends AbstractController
             'results' => $results
         ]);
     }
+
+    /**
+     * @Route("/quiz/candidates/{id}/summary", name="summary_candidate")
+     */
+    public function getSummary(int $id , Request $request)
+    {
+
+        $candidate = $this->getDoctrine()->getRepository(Candidate::class)->find($id);
+        $name = $candidate->getFullname();
+        $strippedName = str_replace(' ', '', $name);
+
+        //https://ourcodeworld.com/articles/read/799/how-to-create-a-pdf-from-html-in-symfony-4-using-dompdf Pour le pdf
+        if ($request->isMethod('POST')) {
+            //Configure Dompdf according to your needs
+            $pdfOptions = new Options();
+            $pdfOptions->set('defaultFont', 'Arial');
+            // Instantiate Dompdf with our options
+            $dompdf = new Dompdf($pdfOptions);
+            // Retrieve the HTML generated in our twig file
+            $html = $this->renderView('candidate/pdf.html.twig', [
+                'candidate' => $candidate
+            ]);
+            // Load HTML to Dompdf
+            $dompdf->loadHtml($html);
+            // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+            $dompdf->setPaper('A4', 'portrait');
+            // Render the HTML as PDF
+            $dompdf->render();
+            // Output the generated PDF to Browser (force download)
+            $dompdf->stream("Récapitulatif_$strippedName.pdf", [
+                "Attachment" => true
+            ]);
+        }
+        return $this->render('candidate/summary.html.twig', [
+            'candidate' => $candidate,
+        ]);
+    }
+
+    /**
+     * @Route("/quiz/candidates/{id}/summary/pdf", name="pdf_summary_candidate")
+     */
+    public function getSummaryPdf(int $id, Request $request)
+    {
+        $candidate = $this->getDoctrine()->getRepository(Candidate::class)->find($id);
+        return $this->render('candidate/pdf.html.twig', [
+            'candidate' => $candidate,
+        ]);
+    }
+
 }

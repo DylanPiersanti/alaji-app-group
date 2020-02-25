@@ -19,6 +19,7 @@
                 {% endif %}
             </button>
         </a>
+        <a href="{{ path('summary_candidate', {id: candidate.id})}}" class="btn btn-primary mb-2">Obtenir récapitulatif</a>
         <div class="row">
             <div class="col-4">
                 <img src="{{ candidate.avatar }}" width="80%"/>

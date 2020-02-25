@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Récapitulatif {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-3">Récapitulatif</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive mt-5">
+                    <table class="table table-bordered text-center">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Information examinateur</th>
+                                <th colspan="2">Information candidat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Nom de l'examinateur</th>
+                                <th>Nom du candidat</th>
+                                <th>Email</th>
+                            </tr>
+                            <tr>
+                                <td>{{ candidate.user.fullname }}</td>
+                                <td>{{ candidate.fullname }}</td>
+                                <td>{{ candidate.email }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th colspan="5">Résultats</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Critères</th>
+                        <th>Test</th>
+                        <th>Oral</th>
+                        <th>Moyenne critère</th>
+                        <th>Acquis</th>
+                    </tr>
+                    {% for result in candidate.results %}
+                        <tr>
+                            <th>{{ result.criteria.name }}</th>
+                            <td>{{ result.test }}</td>
+                            <td>{{ result.oral }}</td>
+                            <td>{{ result.average}}%</td>
+                            <td>{{ result.acquis}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pdf">
+            <form class="form" action="" method="post">
+                <input type="submit" name="pdf" value="Convertir en pdf" class="btn btn-info">
+            </form>
+        </div>
+    </div>
+{% endblock %}
