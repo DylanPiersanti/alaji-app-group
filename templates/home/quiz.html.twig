@@ -13,11 +13,16 @@
 
 </style>
     <div class="container mt-5">
-        <form class="form" action="" method="post" >
-            <input type="submit" name="update" value="Mettre à jour les données" class="btn btn-info">
-            <button class="btn btn-primary"><a class="profil-link" href="{{ path('teacher_profil') }}">Mon profil</a></button>
-        </form>
-        
+        <div class="row">
+            <div class="col-lg-3">
+                <form class="form" action="" method="post" >
+                    <input type="submit" name="update" value="Mettre à jour les données" class="btn btn-info">
+                </form>
+            </div>
+            <div class="col-lg-9">
+                <button class="btn btn-primary"><a class="profil-link" href="{{ path('teacher_profil') }}">Mon profil</a></button>
+            </div>
+        </div>
         <div class="jumbotron mt-3">
             <p class="lead"><h1>Sélection du quiz</h1></p>
             <hr class="my-4">

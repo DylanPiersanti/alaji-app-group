@@ -435,7 +435,7 @@ class MoodleApiController extends AbstractController
         if (!$user["users"]) {
             return[
                 'success' => false,
-                'message' => "L'email n'exite pas dans moodle."
+                'message' => "L'email n'existe pas dans moodle."
             ];
         }
         $idUser = $user["users"][0]["id"];

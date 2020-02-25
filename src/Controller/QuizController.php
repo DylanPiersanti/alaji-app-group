@@ -15,7 +15,7 @@ class QuizController extends AbstractController
     /**
      * @Route("/", name="quiz")
      */
-    public function quiz(Request $request)
+    public function quiz(Request $request, MoodleApiController $moodleApiController, MoodleApi $moodleApi)
     {
         if ($request->isMethod('POST')) {
             $moodleApiController->postQuiz($moodleApi);
