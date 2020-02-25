@@ -43,7 +43,7 @@ class TeacherController extends AbstractController
             $em->persist($user);
             $em->flush();
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('admin_profil');
         }
 
         
