@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+    <div class="jumbotron mt-3">
+        <p class="lead"><h1>Sélection du quiz</h1></p>
+        <hr class="my-4">
+        {% for quizzes in quiz %}
+        <a href=""><li>{{ quizzes.name }}</li></a>
+        {% endfor %}
+    </div>
+{% endblock %}
