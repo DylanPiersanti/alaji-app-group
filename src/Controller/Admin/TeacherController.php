@@ -27,18 +27,20 @@ class TeacherController extends AbstractController
         $user = new User;
         $form = $this->createFormBuilder($user)
             ->add('email', EmailType::class)
-            ->add('fullname', TextType::class)
             ->add('password', PasswordType::class)
-            ->add('moodle_id', NumberType::class)
             ->add('submit', SubmitType::class)
             ->getForm();
 
             $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
+            $email = $user->getEmail();
+            dump($email);
+            die;
+            
             $passwordEncoded = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($passwordEncoded);
+            $user->setRoles(["ROLE_USER"]);
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
@@ -46,7 +48,7 @@ class TeacherController extends AbstractController
             return $this->redirectToRoute('admin_profil');
         }
 
-        
+
 
         return $this->render('admin/add.html.twig', [
             'form' => $form->createView()
