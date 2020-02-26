@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuizController extends AbstractController
 {
     /**
-     * @Route("/", name="quiz")
+     * @Route("/quiz", name="quiz")
      */
     public function quiz(Request $request, MoodleApiController $moodleApiController, MoodleApi $moodleApi)
     {
