@@ -11,7 +11,7 @@ class AddTeacherCest
     // tests
     public function tryToAddTeacherSuccess(AcceptanceTester $I)
     {
-        $I->amOnPage('/login');
+        $I->amOnPage('/');
         $I->fillField('email', 'admin@alaji.fr');
         $I->fillField('password', 'admin');
         $I->click('Valider');
@@ -24,7 +24,7 @@ class AddTeacherCest
 
     public function tryToAddTeacherWrongEmail(AcceptanceTester $I)
     {
-        $I->amOnPage('/login');
+        $I->amOnPage('/');
         $I->fillField('email', 'admin@alaji.fr');
         $I->fillField('password', 'admin');
         $I->click('Valider');
@@ -37,7 +37,7 @@ class AddTeacherCest
 
     public function tryToAddNotTeacher(AcceptanceTester $I)
     {
-        $I->amOnPage('/login');
+        $I->amOnPage('/');
         $I->fillField('email', 'admin@alaji.fr');
         $I->fillField('password', 'admin');
         $I->click('Valider');
